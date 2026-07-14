@@ -1,0 +1,60 @@
+-- functions 
+-- block of code , collection of statment=> perform certain task
+-- code reusable,
+-- code duplicacy is remove
+-- make u code divided into smaller section
+-- inbuilt function 
+-- scaler function => applies on every row and return the o/p for each row 
+--- string, number, dates
+use world;
+select name, continent, concat(continent,'have',name,'country')from
+country;
+select name, continent, concat_ws(' ', continent,'have',name,'country')from
+country;
+select name, upper(name) from country;
+select name, upper(name), substr(name,2)from country;-- extract string char 
+
+select name, upper(name), substr(name,2) , substr(name,2,4)from country;
+select name, upper(name), substr(name,2) , substr(name,2,4) , substr(name,1,4)
+from country where name='colombia';
+select name, substr(name,-4) from country
+where name='colombia';-- negative means right (backside ) side se 4 
+select name, upper(name), substr(name,-4,2) from country
+where name= 'colombia';
+-- length ( bite use ) and char_length (kitne char h )
+select length('77'),char_length('77');
+-- replace the char 
+select name, replace(name,'a','@')from country;
+-- trim work space ko remove krne  from staring and ending 
+SELECT TRIM('      he  llo    ');
+-- lpad left side char add krne  and rpad
+select name,rpad(name,6,'@')from country;
+select name,lpad(name,6,'_')from country;
+-- inbuilt method 
+-- yyyy-mm-dd <= DD/MM/YYYY (we can convert)
+-- date ko bata h 
+select current_date(), current_time(), current_timestamp(), now();
+
+select now();
+--  adddate krne h 
+select now(), adddate(now() ,2);
+SELECT NOW(), ADDDATE(NOW(), 1),
+    ADDDATE(NOW(), -2),
+    ADDDATE(NOW(), INTERVAL 1 YEAR),
+    ADDDATE(NOW(), INTERVAL 1 HOUR);
+-- sub krne h date ko 
+-- select now(). year(now()) , month (now());
+-- extract , weekday 
+SELECT NOW(),
+       YEAR(NOW()),
+       MONTH(NOW()),
+       EXTRACT(MONTH FROM NOW()),
+       EXTRACT(MINUTE FROM NOW()), weekday (now ());
+	select now(), concate('current month is', month( now() ) );
+SELECT NOW(),
+       DATE_FORMAT(NOW(), 'year is %Y month is %M');
+       
+select now(), date_format( now() ,
+    'year is %Y month is %M, weekday is %W')
+    -- substr, char_length , year, month, extract, date_formate, now()
+ -- select payment_date, adddate(payment_date,3) from sakila.payment;    
