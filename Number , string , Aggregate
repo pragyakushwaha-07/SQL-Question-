@@ -1,0 +1,97 @@
+ -- NUmeric function 
+ select lifeexpectancy, round(lifeexpextancy) from country; 
+
+select 34.58, round(34.2);-- 34 
+select 34.58, round(134.3);-- 134
+-- #1 means round of first decminal value eg 469 (4) 
+select 76.469, round(76.469,1);-- 76
+ select 76.369, round(76.361,2);-- 76
+ -- round off to nearest 10, 100, 1000 
+ -- #-1 it means decminal se phele value ko round off krne h 
+select 9, round(9.2, -1);-- 10
+select 9, round(7.2, -1);-- 10
+select 9, round(3.2, -1);-- 0
+select 9, round(5.2, -1);-- 10
+select 9, round(15.2, -1);-- 20
+select 9, round(13.2, -1); -- 10
+-- -2=> 1 
+ select 13.2, round(13.2, -2);-- 0 
+ select 13.2, round(53.2, -2);-- 100
+ select 13.2, round(43.2, -2);-- 0
+ select 13.2, round(50.2, -2);-- 100
+ -- nearest 100 
+select 13.2, round(250.2, -2);-- 300
+select 13.2, round(252.2, -1);-- 250
+   -- nearest 1000
+select 252.2, round(254.2, -3);-- 0
+select 254.2, round(7654.2, -3);-- 8000
+-- truncate  is used to extract the decimal value 
+select round(34.857,1), truncate(34.857,1);-- 34.9, 34.8 
+-- mod  is give remainder 
+select round(34.857,1), truncate(34.857,1) , mod(3,5);
+ --  34.9, 34.8 , 3
+-- floor  it basical change the value into lowest form 
+-- after decimal number always larger 
+select floor(34.000001);-- 34
+-- ceil always upper value after decimal number 
+select ceil(34.0000001); -- 34 change 35 
+select ceil(35.9999999); -- 36
+-- abs absolute value  -ve value always show +ve 
+select  abs(10.1111), abs(-10.123123321); -- 10.1111, 10.123123321
+
+-- Scaler function - which applied for each row and give each rows ki value 
+-- Aggregate function 
+-- Multiple rows per applied krne  but give some rows  output value 
+use world;
+select continent from country;
+-- distinct is a multi rows function 
+select distinct(continent) from country;
+select name from country;
+select distinct(name) from country;
+ -- count 
+ select count(continent) from country;
+select count(continent),count( distinct(continent))from country;
+-- country name 
+select count(name),count( distinct(name))from country;
+-- Aggreagte function are the function which are the used to applied the calculation 
+-- on set of roles 
+-- eg count, max, min
+
+select population from country;
+select  count(population), sum(population),
+ avg(population) from country;
+ select Surfacearea from country;
+ -- sum applied numbers 
+ select count(surfacearea), sum(surfacearea), max(surfacearea) from country;
+ 
+ select  count(continent),avg(continent) from country ;
+ -- max, min 
+ select count(continent), max(continent), 
+ min(continent) from country;
+ -- Aggreagate function ka sath non Aggregate nhi 
+ -- lekh sakte directly 
+ select population , count(population)from country;
+ -- population => Aggregated 
+ -- count => non Aggregate 
+select population   from country;
+select  avg(population )  from country;
+-- replace function 
+select  avg(population)  from country;
+
+select avg(population), avg(replace(population, 1,4))from country;
+select replace(population, 1,4)from country;
+ select avg(replace(population, 1,4))from country;
+ -- 
+  select avg(population), avg(replace(population, 0, ' '))from country;
+  select population, replace(population, 0,' ')from country;
+  -- data sort krna (order by clause)
+  select name, continent, region, population from country;
+  select name, continent, region, population from country
+  order by name ;
+  select name, continent, region, population from country
+  order by name desc ;
+  select name, continent, region, population from country
+  order by population, name ;
+  select name, continent, region, population from country
+  order by continent , name;
+  
