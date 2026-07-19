@@ -1,0 +1,47 @@
+-- 06-02-26 
+select *from payment;
+select sum(amount) from payment;
+select avg(amount) from payment;
+select max(amount) from payment;
+select sum(amount) from payment where customer_id=2;
+select sum(amount) from payment where customer_id=3;
+-- 264 
+select sum(amount) from payment where customer_id=2 
+or customer_id=3;
+-- non aggregate col 
+select  customer_id, sum(amount) from payment where customer_id=2 
+or customer_id=3;
+-- group by (inside the multiple rows  store)
+-- is used to applied  grouped similar value 
+-- the groups will be created unique value
+select*from payment;
+select customer_id from payment group by customer_id;
+select staff_id from payment group by staff_id;
+select payment_id from payment group by payment_id;
+
+select sum(amount) from payment where customer_id=2;-- 118.68
+select sum(amount) from payment where customer_id=2; -- 128.73
+select sum(amount) from payment where customer_id=3; -- 135.74
+-- Group by  is a function 
+select customer_id, sum(amount) from payment  group by customer_id;
+
+select customer_id, sum(amount), count(customer_id)
+ from payment  group by customer_id;
+ 
+ -- distint and group by  where 
+ select * from payment where payment_id=1;
+select count(*), sum(amount) from payment where payment_id=1;
+ select count(*), sum(amount) from payment where payment_id;
+  --  group by having -- 09-02-26 
+  use world;
+   select * from country;
+select name, continent , population from country;
+select sum(population) from country ;
+select sum (ppopulation) from country where continent='Asia';
+select  continent, sum (ppopulation) from country
+ group by continent;
+select continent, region, sum(population) from country 
+group by  continent,region;
+--  group by having -- 09-02-26 
+select continent, count(name) as totalcountry from country
+group by continent having totalcountry>30 ;
