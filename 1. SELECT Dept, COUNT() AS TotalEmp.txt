@@ -1,0 +1,495 @@
+1. SELECT Dept, COUNT(*) AS TotalEmployees
+FROM Employee
+GROUP BY Dept;
+2. SELECT Dept, SUM(Salary) AS TotalSalary
+FROM Employee
+GROUP BY Dept;
+3.SELECT Gender, AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY Gender; 
+4.SELECT Dept, MAX(Salary) AS MaxSalary
+FROM Employee
+GROUP BY Dept;
+5.SELECT Role, MIN(Salary) AS MinSalary
+FROM Employee
+GROUP BY Role;
+6. SELECT City, COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY City;
+7. SELECT Region, SUM(Salary) AS TotalSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY Region;
+8. SELECT Dept, AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY Dept
+ORDER BY AvgSalary DESC;
+9.SELECT City, SUM(Salary) AS TotalSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY City
+ORDER BY TotalSalary ASC;
+10. SELECT Role, COUNT(*) AS EmpCount
+FROM Employee
+GROUP BY Role
+ORDER BY EmpCount DESC, Role ASC;
+
+11. SELECT State, COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY State
+ORDER BY EmpCount DESC, State ASC;
+12.SELECT Region, SUM(Salary) AS TotalSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY Region
+ORDER BY TotalSalary DESC;
+13. SELECT Dept, MIN(Salary) AS MinSalary
+FROM Employee
+GROUP BY Dept
+ORDER BY MinSalary DESC;
+14. SELECT Dept, COUNT(*) AS EmpCount
+FROM Employee
+GROUP BY Dept
+HAVING COUNT(*) > 10;
+15.SELECT Dept, AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY Dept
+HAVING AVG(Salary) > 65000;
+16.SELECT City, SUM(Salary) AS TotalSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY City
+HAVING SUM(Salary) > 600000;
+17.SELECT Role, COUNT(*) AS EmpCount
+FROM Employee
+GROUP BY Role
+HAVING COUNT(*) > 7;
+18.SELECT Region, AVG(Salary) AS AvgSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY Region
+HAVING AVG(Salary) < 70000;
+19.SELECT Dept, MAX(Salary) AS MaxSalary
+FROM Employee
+GROUP BY Dept
+HAVING MAX(Salary) >= 90000;
+20.SELECT State, COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY State
+HAVING COUNT(*) > 12;
+21.SELECT City, MIN(Salary) AS MinSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY City
+HAVING MIN(Salary) > 60000;
+22.SELECT e.Dept,
+       a.City,
+       COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY e.Dept, a.City
+ORDER BY e.Dept, a.City;
+23. SELECT Dept,
+       Gender,
+       AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY Dept, Gender
+ORDER BY Dept, Gender;
+24.SELECT a.Region,
+       e.Role,
+       COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.Region, e.Role
+ORDER BY a.Region, e.Role;
+25.SELECT a.State,
+       e.Dept,
+       MAX(e.Salary) AS MaxSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.State, e.Dept
+ORDER BY a.State, e.Dept;
+26.SELECT a.City,
+       e.Gender,
+       SUM(e.Salary) AS TotalSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.City, e.Gender
+ORDER BY a.City, e.Gender;
+27.SELECT e.Dept,
+       a.City,
+       COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY e.Dept, a.City
+HAVING COUNT(*) > 2
+ORDER BY e.Dept, a.City;
+28. SELECT a.Region,
+       e.Gender,
+       AVG(e.Salary) AS AvgSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.Region, e.Gender
+ORDER BY a.Region, AvgSalary DESC;
+29.SELECT a.State,
+       e.Role,
+       COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.State, e.Role
+HAVING COUNT(*) > 1
+ORDER BY a.State, e.Role;
+30.SELECT YEAR(JoinDate) AS JoinYear,
+       COUNT(*) AS Joiners
+FROM Employee
+GROUP BY YEAR(JoinDate)
+ORDER BY JoinYear;
+31.SELECT YEAR(JoinDate) AS JoinYear,
+       AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY YEAR(JoinDate)
+ORDER BY JoinYear;
+32.SELECT MONTH(JoinDate) AS JoinMonth,
+       COUNT(*) AS Joiners
+FROM Employee
+GROUP BY MONTH(JoinDate)
+ORDER BY JoinMonth;
+33.SELECT QUARTER(JoinDate) AS JoinQtr,
+       SUM(Salary) AS TotalSalary
+FROM Employee
+GROUP BY QUARTER(JoinDate)
+ORDER BY JoinQtr;
+34.SELECT QUARTER(JoinDate) AS Qtr,
+       COUNT(*) AS Joiners
+FROM Employee
+WHERE QUARTER(JoinDate) IN (1,3)
+GROUP BY QUARTER(JoinDate)
+ORDER BY Qtr;
+35.SELECT YEAR(JoinDate) AS JoinYear,
+       Dept,
+       COUNT(*) AS EmpCount
+FROM Employee
+GROUP BY YEAR(JoinDate), Dept
+ORDER BY JoinYear, Dept;
+36.SELECT YEAR(JoinDate) AS JoinYear,
+       COUNT(*) AS Joiners
+FROM Employee
+GROUP BY YEAR(JoinDate)
+HAVING COUNT(*) > 6
+ORDER BY JoinYear;
+37.SELECT QUARTER(JoinDate) AS Qtr,
+       AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY QUARTER(JoinDate)
+HAVING AVG(Salary) > 70000
+ORDER BY Qtr;
+38.SELECT a.State,
+       COUNT(*) AS EmpCount,
+       AVG(e.Salary) AS AvgSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.State
+ORDER BY a.State;
+39.SELECT a.State,
+       e.Dept,
+       COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.State, e.Dept
+ORDER BY a.State, EmpCount DESC;
+40.SELECT a.City,
+       COUNT(DISTINCT e.Dept) AS DeptCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.City
+HAVING COUNT(DISTINCT e.Dept) > 2;
+41.SELECT a.Region,
+       a.State,
+       SUM(e.Salary) AS TotalSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.Region, a.State
+ORDER BY a.Region, a.State;
+42.SELECT a.Region,
+       COUNT(*) AS EmpCount,
+       AVG(e.Salary) AS AvgSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.Region
+HAVING COUNT(*) > 10
+   AND AVG(e.Salary) > 67000;
+43. SELECT a.City,
+       COUNT(DISTINCT e.Role) AS UniqueRoles
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+GROUP BY a.City
+ORDER BY a.City;
+44.SELECT Dept,
+       COUNT(*) AS FemaleCount
+FROM Employee
+WHERE Gender = 'F'
+GROUP BY Dept
+ORDER BY Dept;
+45. SELECT Dept,
+       AVG(Salary) AS AvgSalary
+FROM Employee
+WHERE JoinDate > '2019-01-01'
+GROUP BY Dept
+ORDER BY AvgSalary DESC;
+46.SELECT a.City,
+       SUM(e.Salary) AS TotalSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+WHERE e.Dept = 'IT'
+GROUP BY a.City
+ORDER BY a.City;
+47.SELECT Role,
+       COUNT(*) AS EmpCount
+FROM Employee
+WHERE Salary > 70000
+GROUP BY Role
+ORDER BY EmpCount DESC;
+48.SELECT e.Dept, MAX(e.Salary) AS MaxSalary
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+WHERE a.Region IN ('South','West')
+GROUP BY e.Dept
+ORDER BY MaxSalary DESC;
+49.SELECT YEAR(e.JoinDate) AS JoinYear,
+       COUNT(*) AS EmpCount
+FROM Employee e
+JOIN Address a
+ON e.EmpID = a.EmpID
+WHERE a.State = 'TX'
+GROUP BY YEAR(e.JoinDate)
+ORDER BY JoinYear;
+50.SELECT Dept,
+       COUNT(*) AS EligibleFemales
+FROM Employee
+WHERE Gender = 'F'
+  AND Salary > 60000
+GROUP BY Dept
+HAVING COUNT(*) > 3
+ORDER BY Dept;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
